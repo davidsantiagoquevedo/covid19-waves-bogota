@@ -2,9 +2,8 @@
 """
 Created on Wed Nov 23 2022
 Adapted from: https://github.com/mrc-ide/Brazil_COVID19_distributions
-
-@author: dsquevedo
-@author: ntorres
+@author: davidsantiagoquevedo
+@author: ntorresd
 """
 import yaml
 import pandas as pd
@@ -27,7 +26,7 @@ UTILS_PATH = config['PATHS']['UTILS_PATH'].format(dir = 'epidemiological_distrib
 
 import sys
 sys.path.append(UTILS_PATH)
-import utilities as ut
+import utilities_epi_dist as ut
 SEED = config['MODELS']['SEED']
 ITER = config['MODELS']['ITER']
 CHAINS = config['MODELS']['CHAINS']
@@ -224,7 +223,7 @@ for col in columns_BF:
     posterior_gln[col].update({'LogLaplace': ut.LogLaplaceCovariance(posterior_gln, col)})
     
     
-columns_models = ['Gamma', 'Lognormal', 'Weibull', 'Exponential', 'Gamma 3p', 'Gen Lognormal']
+columns_models = ['Gamma', 'Lognormal', 'Weibull', 'Exponential', 'Gen Lognormal']
 bayesfactorsBR = pd.DataFrame(columns = columns_models, index = columns_models)
 BayesFactorsdist = {}
 evidence_dict = {'Gamma': posterior_gamma, 'Lognormal': posterior_lognorm,
@@ -243,6 +242,3 @@ for col in columns_BF:
     print(bayesfactorsBR, '\n')
     df_bf=pd.DataFrame(bayesfactorsBR)
     df_bf.to_csv(f'{OUT_PATH}/bf_{col}.csv')
-
-#Selecting best models based on BF
-ut.best_model()

@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thr Jul 31 2022
-
-@author: dsquevedo
+@author: davidsantiagoquevedo
 @author: ntorresd
 """
 
@@ -11,16 +10,12 @@ import yaml
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Load configuration
-ymlfile = open("config.yml", "r") 
-cfg = yaml.load(ymlfile)
-config = cfg["default"]
+config = yaml.load(open("config.yml", "r"))["default"]
 
 # Paths
 DATA_PATH = config['PATHS']['DATA_PATH']
 OUT_PATH = config['PATHS']['OUT_PATH'].format(dir = 'severe_outcomes')
 OUT_PATH_WAVES = config['PATHS']['OUT_PATH'].format(dir = 'waves')
-FIG_PATH = config['PATHS']['FIG_PATH'].format(dir = 'severe_outcomes')
 UTILS_PATH = config['PATHS']['UTILS_PATH'].format(dir = 'severe_outcomes')
 
 # Plot style
@@ -30,7 +25,7 @@ colors = prop_cycle.by_key()['color']
 
 # Import useful functions
 sys.path.append(UTILS_PATH)
-import utilities as ut
+import utilities_severity as ut
 
 # Read data
 df_confirmed_bogota = pd.read_csv(DATA_PATH + 'confirmed_cases.csv')

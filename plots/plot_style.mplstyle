@@ -1,0 +1,42 @@
+#Created on Thu Jul  7 16:17:49 2022
+#@author: dsquevedov
+#@author: ntorres
+# default matplotlibrc file: https://matplotlib.org/stable/tutorials/introductory/customizing.html
+
+#Ticks
+xtick.labelsize: 12
+ytick.labelsize: 12
+
+#Axes
+axes.spines.top: False
+axes.spines.right: False
+axes.labelsize: 14
+axes.titlesize: 15
+axes.titlelocation: center
+axes.titleweight: bold
+axes.prop_cycle: cycler('color', ['6b6ca3', '87bcbd', '6f9954', 'b1615c', '134b73', '434475', '2c2d54']) 
+                 #Hokusai2 ['abc9c8', '72aeb6', '4692b0', '2f70a1', '134b73', '0a3351'], order=(5, 2, 4, 1, 6, 3)
+                 #VanGogh1 ('2c2d54', '434475', '6b6ca3', '969bc7', '87bcbd', '89ab7c', '6f9954'), order=(3, 5, 7, 4, 6, 2, 1)
+                 #VanGogh2 ("bd3106", "d9700e", "e9a00e", "eebe04", "5b7314", "c3d6ce", "89a6bb", "454b87"), order=(1, 5, 8, 2, 7, 4, 6, 3)
+                 #Cassatt1 ("b1615c", "d88782", "e3aba7", "edd7d9", "c9c9dd", "9d9dc7", "8282aa", "5a5a83"), order=(3, 6, 1, 8, 4, 5, 2, 7)
+
+#Legend
+legend.fontsize: 14
+legend.frameon: True
+legend.framealpha:    0.8
+legend.edgecolor:     1.0
+legend.loc: best #upper right
+
+
+#Figure
+#figure.figsize: 12, 9
+figure.autolayout: True
+
+#Saving
+savefig.dpi:  100
+savefig.bbox: tight
+savefig.transparent: False
+savefig.facecolor: white
+
+#Error bars
+errorbar.capsize: 9

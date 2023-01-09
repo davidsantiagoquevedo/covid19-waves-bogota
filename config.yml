@@ -10,8 +10,8 @@ default:
     FIG_PATH : "./{dir}/figures/"
     SCRIPTS_PATH : "./{dir}/scripts/"
     UTILS_PATH : "./{dir}/scripts/"
-    PLOT_PATH : "./plot_scripts/"
-    PLOT_STYLE : "./plot_scripts/plot_style.mplstyle"
+    PLOT_PATH : "./plots/"
+    PLOT_STYLE : "./plots/plot_style.mplstyle"
   MODELS:
     SEED : 4321
     ITER : 2000

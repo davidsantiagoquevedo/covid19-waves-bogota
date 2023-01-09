@@ -2,9 +2,8 @@
 """
 Created on Sun Nov 20 2022
 Adapted from: https://github.com/mrc-ide/Brazil_COVID19_distributions
-
-@author: dsquevedo
-@author: ntorres
+@author: davidsantiagoquevedo
+@author: ntorresd
 """
 import yaml
 import sys
@@ -13,9 +12,7 @@ import time
 import pystan
 
 t0 = time.time()
-ymlfile = open("config.yml", "r")
-cfg = yaml.load(ymlfile)
-config = cfg["default"]
+config = yaml.load(open("config.yml", "r"))["default"]
 
 DATA_PATH = config['PATHS']['DATA_PATH']
 OUT_PATH = config['PATHS']['OUT_PATH'].format(dir = 'epidemiological_distributions')
@@ -24,7 +21,7 @@ SCRIPTS_PATH = config['PATHS']['SCRIPTS_PATH'].format(dir = 'epidemiological_dis
 UTILS_PATH = config['PATHS']['UTILS_PATH'].format(dir = 'epidemiological_distributions')
 
 sys.path.append(UTILS_PATH)
-import utilities as ut
+import utilities_epi_dist as ut
 
 SEED = config['MODELS']['SEED']
 ITER = config['MODELS']['ITER']

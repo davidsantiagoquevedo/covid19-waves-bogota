@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thr Jul 06 2022
-
-@author: dsquevedo
-@author: ntorres
+@author: davidsantiagoquevedo
+@author: ntorresd
 """
 import sys
 import yaml
@@ -28,7 +27,7 @@ prop_cycle = plt.rcParams['axes.prop_cycle']
 colors = prop_cycle.by_key()['color']
 
 sys.path.append(UTILS_PATH)
-import utilities as ut
+import utilities_waves as ut
 
 # Confirmed cases
 df_confirmed_bogota = pd.read_csv(DATA_PATH + 'confirmed_cases.csv')

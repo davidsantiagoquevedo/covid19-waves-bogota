@@ -1,5 +1,5 @@
 // Created on Fri Oct 21 2022
-// @author: cwhittaker
+// @author: cwhittaker1000
 data {
   int<lower=0> K; // number of different lineage categories
   int<lower=0> N; // number of unique sampling timepoints

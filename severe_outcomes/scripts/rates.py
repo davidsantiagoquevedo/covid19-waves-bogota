@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Nov 29 2022
-
-@author: dsquevedo
-@author: ntorres
+@author: davidsantiagoquevedo
+@author: ntorresd
 """
 import sys
 import yaml
@@ -11,19 +10,16 @@ import pandas as pd
 import pystan
 import time
 
-ymlfile = open("config.yml", "r")
-cfg = yaml.load(ymlfile)
-config = cfg['default']
+config = yaml.load(open("config.yml", "r"))["default"]
 
 DATA_PATH = config['PATHS']['DATA_PATH']
 OUT_PATH = config['PATHS']['OUT_PATH'].format(dir = 'severe_outcomes')
-FIG_PATH = config['PATHS']['FIG_PATH'].format(dir = 'severe_outcomes')
 SCRIPTS_PATH = config['PATHS']['SCRIPTS_PATH'].format(dir = 'severe_outcomes')
 UTILS_PATH = config['PATHS']['UTILS_PATH'].format(dir = 'severe_outcomes')
 
 # Import useful functions
 sys.path.append(UTILS_PATH)
-import utilities as ut
+import utilities_severity as ut
 df_confirmed_bogota = pd.read_csv(DATA_PATH + 'confirmed_cases_waves.csv')
 
 # Changing the age groups

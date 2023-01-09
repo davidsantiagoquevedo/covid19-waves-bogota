@@ -1,18 +1,15 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Oct 21 2022
-
-@author: dsquevedo
-@author: cwhittaker
-@author: ntorres
+@author: davidsantiagoquevedo
+@author: cwhittaker1000
+@author: ntorresd
 """
 import yaml
 import pandas as pd
 import numpy as np
 
-ymlfile = open("config.yml", "r")
-cfg = yaml.load(ymlfile)
-config = cfg["default"]
+config = yaml.load(open("config.yml", "r"))["default"]
 
 DATA_PATH = config['PATHS']['DATA_PATH']
 OUT_PATH = config['PATHS']['OUT_PATH'].format(dir = 'genomics')
@@ -72,16 +69,15 @@ df_beta_mean =  df_beta.agg(['mean', q025, q975])
 cols = list(variants_dict.values())
 df_beta_mean.columns = cols
 # Notice that these beta's are the advantage of variants 2-5 with respect to variant 1 (which is the pivot). In order to get the advantage
-# between the others, we should divide them
+# between the others, we should subtract them
 
 def calculate_relative_advantage(stat):
     df_beta_cp = df_beta.copy()
-    df_beta_cp['beta[1]'] = 1
     df_result = pd.DataFrame({})
     for piv_var in list(variants_dict.keys()):  
         advantage_list =[variants_dict[piv_var]]
         for var in list(variants_dict.keys()):
-            advantage = df_beta_cp[f'beta[{var}]']/df_beta_cp[f'beta[{piv_var}]']
+            advantage = df_beta_cp[f'beta[{var}]']-df_beta_cp[f'beta[{piv_var}]']
             adv = advantage.agg(stat)
             advantage_list.append(adv)
         df_temp = pd.DataFrame([advantage_list], columns = ['pivot_variant'] + cols)
@@ -93,11 +89,6 @@ df_mean = calculate_relative_advantage('mean')
 df_025 = calculate_relative_advantage(q025)
 df_975 = calculate_relative_advantage(q975)
 
-df_res = pd.DataFrame({})
-for col in df_mean.columns.to_list():
-    if col == 'pivot_variant':
-        df_res[col] = df_mean[col]
-    else:
-        df_res[col] = df_mean[col].astype(str)+ ' ' + df_025[col].astype(str) + ' ' + df_975[col].astype(str) 
-
-df_res.to_csv(OUT_PATH + 'advantage.csv', index = False)
+df_mean.to_csv(OUT_PATH + 'advantage_mean.csv', index = False)
+df_025.to_csv(OUT_PATH + 'advantage_025.csv', index = False)
+df_975.to_csv(OUT_PATH + 'advantage_975.csv', index = False)
